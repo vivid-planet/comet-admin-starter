@@ -1,0 +1,12 @@
+const scripts = document.getElementsByTagName("script");
+[].every.call(scripts, (script: HTMLScriptElement) => {
+    const m = script.src.match(/^(.*)?\/build\/react-admin-starter/);
+    if (m) {
+        __webpack_public_path__ = m[1] + __webpack_public_path__;
+        return false;
+    }
+    return true;
+});
+
+import { install } from "@material-ui/styles";
+install();

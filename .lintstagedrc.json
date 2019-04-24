@@ -1,0 +1,8 @@
+{
+    "linters": {
+        "*.{ts,tsx}": ["tslint", "npm run tsc --silent"],
+        "*.{ts,tsx,js,jsx,json,css,scss,md}": ["prettylint"],
+        "*": ["vplint"]
+    },
+    "ignore": ["package-lock.json", "*.lock"]
+}

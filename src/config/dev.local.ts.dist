@@ -1,0 +1,9 @@
+import dev from "app/config/dev";
+import { IConfig } from "app/config/index";
+
+const config: IConfig = {
+    ...dev,
+    exampleApi: "http://devlocal.example.com",
+};
+
+export default config;
