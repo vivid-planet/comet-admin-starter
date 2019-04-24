@@ -62,10 +62,8 @@ class App extends React.Component {
                                 <Master>
                                     <Toolbar style={{ margin: "6px 0" }} />
                                     <Switch>
-                                        {/* tslint:disable:jsx-no-lambda */}
                                         <Route path="/dashboard" component={Dashboard} />
                                         <Redirect from="/" to="/dashboard" />
-                                        {/* tslint:enable:jsx-no-lambda */}
                                     </Switch>
                                 </Master>
                             </LocaleContext.Provider>
