@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React Admin Starter</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+    <div id="page">
+        <react-admin-starter></react-admin-starter>
+        <script type="text/javascript">
+          (function () {
+            window.__REACT_ADMIN_STARTER_ENV__ = 'dev';
+            var script = document.createElement('script');
+            script.src = "/build/react-admin-starter.js";
+            script.async = 1;
+            document.head.appendChild(script);
+          })();
+        </script>
+    </div>
+</body>
+</html>

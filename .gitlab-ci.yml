@@ -1,0 +1,6 @@
+stages:
+    - lint
+
+include:
+    - project: 'vivid/gitlab-ci'
+      file: 'templates/lint-npm-template.yml'
