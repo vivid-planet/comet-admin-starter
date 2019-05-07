@@ -45,7 +45,7 @@ class App extends React.Component {
     public static render(baseEl: Element) {
         Webfontloader.load({
             google: {
-                families: ["Open Sans", "Roboto:300,400,500", "Material Icons"],
+                families: ["Open Sans", "Material Icons"],
             },
         });
 
