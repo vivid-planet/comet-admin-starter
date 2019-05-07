@@ -1,5 +1,4 @@
 import { CssBaseline, Grid, IconButton, Theme, Toolbar, Typography } from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Menu from "@material-ui/icons/Menu";
 import { createStyles, WithStyles, withStyles } from "@material-ui/styles";
 import { MenuContext } from "@vivid-planet/react-admin-mui";
@@ -29,7 +28,7 @@ class Master extends React.Component<WithStyles<typeof styles>> {
                     <Header position="fixed" className={classes.appBar} color="primary">
                         <Toolbar disableGutters={true}>
                             <IconButton color="inherit" onClick={this.toggleOpen}>
-                                {this.state.open ? <ChevronLeftIcon /> : <Menu />}
+                                <Menu />
                             </IconButton>
                             <Typography variant="h5" color="inherit">
                                 React Admin Starter
