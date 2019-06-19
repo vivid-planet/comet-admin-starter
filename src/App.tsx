@@ -18,7 +18,10 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
-import * as Webfontloader from "webfontloader";
+
+// tslint:disable-next-line: no-submodule-imports
+import "material-design-icons/iconfont/material-icons.css";
+import "typeface-open-sans";
 
 const cache = new InMemoryCache();
 const stateLink = withClientState({
@@ -43,12 +46,6 @@ const client = new ApolloClient({
 
 class App extends React.Component {
     public static render(baseEl: Element) {
-        Webfontloader.load({
-            google: {
-                families: ["Open Sans", "Material Icons"],
-            },
-        });
-
         ReactDOM.render(<App />, baseEl);
     }
 
