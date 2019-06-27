@@ -18,6 +18,7 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { injectGlobal } from "styled-components";
 import * as Webfontloader from "webfontloader";
 
 const cache = new InMemoryCache();
@@ -40,6 +41,14 @@ const client = new ApolloClient({
     link,
     cache,
 });
+
+// tslint:disable-next-line:no-unused-expression
+injectGlobal`
+    html,body,#page {
+        margin: 0;
+        padding: 0;
+    }
+`;
 
 class App extends React.Component {
     public static render(baseEl: Element) {
