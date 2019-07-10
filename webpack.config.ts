@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import createStyledComponentsTransformer from "typescript-plugin-styled-components";
 import * as webpack from "webpack";
+const tsImportPluginFactory = require("ts-import-plugin");
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
@@ -14,6 +15,21 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
     const publicPath = "/build/";
     const tsLoaderOptions: any = {
         transpileOnly: true,
+        getCustomTransformers: () => ({
+            before: [
+                tsImportPluginFactory({
+                    libraryDirectory: "",
+                    libraryName: "@material-ui/icons",
+                    camel2DashComponentName: false,
+                }),
+                tsImportPluginFactory({
+                    libraryDirectory: "",
+                    libraryName: "@material-ui/core",
+                    camel2DashComponentName: false,
+                }),
+                production ? styledComponentsTransformer : undefined,
+            ],
+        }),
         compilerOptions: {
             module: "es2015",
         },
@@ -33,8 +49,6 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                 "process.env.NODE_ENV": JSON.stringify("production"),
             }),
         );
-    } else {
-        tsLoaderOptions.getCustomTransformers = () => ({ before: [styledComponentsTransformer] });
     }
 
     return {
