@@ -14,6 +14,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
     const publicPath = "/build/";
     const tsLoaderOptions: any = {
         transpileOnly: true,
+        compilerOptions: {
+            module: "es2015",
+        },
     };
 
     const plugins = [
