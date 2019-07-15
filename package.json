@@ -77,7 +77,7 @@
     "scripts": {
         "start": "webpack-dev-server --config ./webpack.config.ts --env.production=0",
         "build": "webpack --config ./webpack.config.ts --env.production=1 --progress",
-        "tsc": "tsc --skipLibCheck --noEmit --project ./tsconfig.json && :",
+        "tsc": "tsc --noEmit --project ./tsconfig.json && :",
         "types": "tsc --noEmit",
         "lint": "tslint --project ."
     }
