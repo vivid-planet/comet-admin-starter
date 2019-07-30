@@ -1,7 +1,7 @@
 import { Drawer, Theme } from "@material-ui/core";
 import Dashboard from "@material-ui/icons/Dashboard";
 import { createStyles, WithStyles, withStyles } from "@material-ui/styles";
-import { MenuItemLink } from "@vivid-planet/react-admin-mui";
+import { MenuItemRouterLink } from "@vivid-planet/react-admin-mui";
 import classNames from "classnames";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -31,7 +31,7 @@ const Menu = ({ classes, open }: WithStyles<typeof styles, true> & RouteComponen
         >
             <sc.MenuItemsWrapper>
                 <div className={classes.toolbar} />
-                <MenuItemLink text="Dashboard" icon={<Dashboard />} path="/dashboard" />
+                <MenuItemRouterLink text="Dashboard" icon={<Dashboard />} to="/dashboard" />
             </sc.MenuItemsWrapper>
         </Drawer>
     );

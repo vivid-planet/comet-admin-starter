@@ -18,7 +18,6 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 
 export default createMuiTheme({
     typography: {
-        useNextVariants: true,
         fontFamily: '"Open Sans", sans-serif',
         h5: {
             fontSize: "18px",
@@ -69,7 +68,7 @@ export default createMuiTheme({
             dense: true,
         },
         MuiTable: {
-            padding: "dense",
+            size: "small",
         },
     },
     appDrawer: {

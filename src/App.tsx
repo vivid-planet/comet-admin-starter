@@ -1,7 +1,7 @@
 import { Toolbar } from "@material-ui/core";
 import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
 import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
-import { MuiThemeProvider } from "@vivid-planet/react-admin-mui";
+import { createGlobalStyle, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
@@ -18,7 +18,6 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { injectGlobal } from "styled-components";
 import * as Webfontloader from "webfontloader";
 
 const cache = new InMemoryCache();
@@ -42,9 +41,8 @@ const client = new ApolloClient({
     cache,
 });
 
-// tslint:disable-next-line:no-unused-expression
-injectGlobal`
-    html,body,#page {
+const GlobalStyle = createGlobalStyle`
+  html,body,#page {
         margin: 0;
         padding: 0;
     }
@@ -68,13 +66,16 @@ class App extends React.Component {
                     <ApolloProvider client={client}>
                         <ApolloHooksProvider client={client}>
                             <LocaleContext.Provider value={dateFnsLocaleDe}>
-                                <Master>
-                                    <Toolbar style={{ margin: "6px 0" }} />
-                                    <Switch>
-                                        <Route path="/dashboard" component={Dashboard} />
-                                        <Redirect from="/" to="/dashboard" />
-                                    </Switch>
-                                </Master>
+                                <React.Fragment>
+                                    <GlobalStyle />
+                                    <Master>
+                                        <Toolbar style={{ margin: "6px 0" }} />
+                                        <Switch>
+                                            <Route path="/dashboard" component={Dashboard} />
+                                            <Redirect from="/" to="/dashboard" />
+                                        </Switch>
+                                    </Master>
+                                </React.Fragment>
                             </LocaleContext.Provider>
                         </ApolloHooksProvider>
                     </ApolloProvider>
