@@ -7,6 +7,3 @@ const scripts = document.getElementsByTagName("script");
     }
     return true;
 });
-
-import { install } from "@material-ui/styles";
-install();
