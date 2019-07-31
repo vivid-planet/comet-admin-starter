@@ -1,4 +1,3 @@
-import { Toolbar } from "@material-ui/core";
 import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
 import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
 import { createGlobalStyle, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
@@ -7,6 +6,7 @@ import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { withClientState } from "apollo-link-state";
+import * as sc from "app/App.sc";
 import Master from "app/components/Master";
 import { getConfig } from "app/config";
 import "app/globals";
@@ -69,7 +69,7 @@ class App extends React.Component {
                                 <React.Fragment>
                                     <GlobalStyle />
                                     <Master>
-                                        <Toolbar style={{ margin: "6px 0" }} />
+                                        <sc.Toolbar />
                                         <Switch>
                                             <Route path="/dashboard" component={Dashboard} />
                                             <Redirect from="/" to="/dashboard" />
