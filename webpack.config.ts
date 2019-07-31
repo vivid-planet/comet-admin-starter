@@ -1,5 +1,6 @@
 import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
 import * as webpack from "webpack";
 
@@ -8,7 +9,7 @@ interface IEnvironment {
 }
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
-    const publicPath = "/build/";
+    const publicPath = "/";
 
     const plugins = [
         new webpack.DefinePlugin({
@@ -16,6 +17,13 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         }),
         new ForkTsCheckerWebpackPlugin({
             tslint: true,
+        }),
+        new HtmlWebpackPlugin({
+            template: "public/index.ejs",
+            templateParameters: {
+                isProduction: production,
+            },
+            hash: true,
         }),
     ];
     if (production) {
@@ -103,9 +111,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             publicPath,
         },
         devServer: {
+            contentBase: __dirname,
             host: "0.0.0.0",
             port: 8080,
-            contentBase: path.join(__dirname, "public"),
             historyApiFallback: true,
             headers: {
                 "Access-Control-Allow-Origin": "*",
