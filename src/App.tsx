@@ -5,7 +5,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
-import { withClientState } from "apollo-link-state";
 import * as sc from "app/App.sc";
 import Master from "app/components/Master";
 import { getConfig } from "app/config";
@@ -21,12 +20,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import * as Webfontloader from "webfontloader";
 
 const cache = new InMemoryCache();
-const stateLink = withClientState({
-    cache,
-    resolvers: {},
-});
 const link = ApolloLink.from([
-    stateLink,
     new HttpLink({
         uri: `${getConfig("apiUrl")}/api/graphql`,
         // credentials: "include",
