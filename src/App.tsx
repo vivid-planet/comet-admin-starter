@@ -1,3 +1,4 @@
+import { ApolloProvider } from "@apollo/react-common";
 import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
 import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
 import { createGlobalStyle, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
@@ -13,8 +14,6 @@ import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
 import * as dateFnsLocaleDe from "date-fns/locale/de";
 import * as React from "react";
-import { ApolloProvider } from "react-apollo";
-import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as Webfontloader from "webfontloader";
@@ -58,20 +57,18 @@ class App extends React.Component {
             <MuiThemeProvider theme={theme}>
                 <RouterBrowserRouter>
                     <ApolloProvider client={client}>
-                        <ApolloHooksProvider client={client}>
-                            <LocaleContext.Provider value={dateFnsLocaleDe}>
-                                <React.Fragment>
-                                    <GlobalStyle />
-                                    <Master>
-                                        <sc.Toolbar />
-                                        <Switch>
-                                            <Route path="/dashboard" component={Dashboard} />
-                                            <Redirect from="/" to="/dashboard" />
-                                        </Switch>
-                                    </Master>
-                                </React.Fragment>
-                            </LocaleContext.Provider>
-                        </ApolloHooksProvider>
+                        <LocaleContext.Provider value={dateFnsLocaleDe}>
+                            <React.Fragment>
+                                <GlobalStyle />
+                                <Master>
+                                    <sc.Toolbar />
+                                    <Switch>
+                                        <Route path="/dashboard" component={Dashboard} />
+                                        <Redirect from="/" to="/dashboard" />
+                                    </Switch>
+                                </Master>
+                            </React.Fragment>
+                        </LocaleContext.Provider>
                     </ApolloProvider>
                 </RouterBrowserRouter>
             </MuiThemeProvider>
