@@ -11,7 +11,7 @@
         "@vivid-planet/react-admin-core": "1.0.0-alpha.26",
         "@vivid-planet/react-admin-date-fns": "1.0.0-alpha.2",
         "@vivid-planet/react-admin-final-form-material-ui": "1.0.0-alpha.9",
-        "@vivid-planet/react-admin-form": "1.0.0-alpha.19",
+        "@vivid-planet/react-admin-form": "1.0.0-alpha.20",
         "@vivid-planet/react-admin-layout": "1.0.0-alpha.2",
         "@vivid-planet/react-admin-mui": "1.0.0-alpha.13",
         "apollo-cache-inmemory": "^1.6.3",
