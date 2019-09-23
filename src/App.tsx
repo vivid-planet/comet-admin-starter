@@ -1,23 +1,22 @@
+import { ApolloProvider } from "@apollo/react-common";
 import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
 import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
-import { createGlobalStyle, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
+import { createGlobalStyle, MasterLayout, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
-import * as sc from "app/App.sc";
-import Master from "app/components/Master";
 import { getConfig } from "app/config";
 import "app/globals";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
 import * as dateFnsLocaleDe from "date-fns/locale/de";
 import * as React from "react";
-import { ApolloProvider } from "react-apollo";
-import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as Webfontloader from "webfontloader";
+import MasterHeader from "./components/MasterHeader";
+import MasterMenu from "./components/MasterMenu";
 
 const cache = new InMemoryCache();
 const link = ApolloLink.from([
@@ -58,20 +57,17 @@ class App extends React.Component {
             <MuiThemeProvider theme={theme}>
                 <RouterBrowserRouter>
                     <ApolloProvider client={client}>
-                        <ApolloHooksProvider client={client}>
-                            <LocaleContext.Provider value={dateFnsLocaleDe}>
-                                <React.Fragment>
-                                    <GlobalStyle />
-                                    <Master>
-                                        <sc.Toolbar />
-                                        <Switch>
-                                            <Route path="/dashboard" component={Dashboard} />
-                                            <Redirect from="/" to="/dashboard" />
-                                        </Switch>
-                                    </Master>
-                                </React.Fragment>
-                            </LocaleContext.Provider>
-                        </ApolloHooksProvider>
+                        <LocaleContext.Provider value={dateFnsLocaleDe}>
+                            <React.Fragment>
+                                <GlobalStyle />
+                                <MasterLayout headerComponent={MasterHeader} menuComponent={MasterMenu}>
+                                    <Switch>
+                                        <Route path="/dashboard" component={Dashboard} />
+                                        <Redirect from="/" to="/dashboard" />
+                                    </Switch>
+                                </MasterLayout>
+                            </React.Fragment>
+                        </LocaleContext.Provider>
                     </ApolloProvider>
                 </RouterBrowserRouter>
             </MuiThemeProvider>
