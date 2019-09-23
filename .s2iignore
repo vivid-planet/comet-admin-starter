@@ -1,0 +1,5 @@
+.git/
+.gitignore
+README.md
+.gitlab-ci.yml
+.vivid.yml
