@@ -10,7 +10,7 @@ import { getConfig } from "app/config";
 import "app/globals";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
-import * as dateFnsLocaleDe from "date-fns/locale/de";
+import { de as dateFnsLocaleDe } from "date-fns/locale";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
