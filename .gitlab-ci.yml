@@ -1,6 +1,22 @@
-stages:
-    - lint
-
 include:
-    - project: 'vivid/gitlab-ci'
-      file: 'templates/lint-npm-template.yml'
+    - project: "vivid/gitlab-ci"
+      file: "templates/lint-npm-base-template.yml"
+    - project: "vivid/gitlab-ci"
+      file: "templates/s2i-template.yml"
+stages:
+    - lint-build-push
+
+lint-npm-master:
+    extends: .lint-npm-master
+    stage: lint-build-push
+
+lint-npm-merge_request:
+    extends: .lint-npm-merge_request
+    stage: lint-build-push
+
+build-and-push:
+    extends: .s2i-build-and-push
+    stage: lint-build-push
+    variables:
+        BASE_IMAGE: # TODO: INSERT BASE IMAGE NAME HERE
+        IMAGE_NAME: # TODO: INSERT TARGET IMAGE NAME HERE
