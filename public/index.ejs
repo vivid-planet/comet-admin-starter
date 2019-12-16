@@ -7,7 +7,9 @@
         <% if (isProduction) { %>
         <script type="text/javascript">
             (function() {
-                // Inject global variables here
+                window.EXTERNAL__APP_CLIENT_API_URL__ = "$API_URL";
+                window.EXTERNAL__APP_CLIENT_API_USER__ = "$API_USER";
+                window.EXTERNAL__APP_CLIENT_API_PASSWORD__ = "$API_PASSWORD";
             })();
         </script>
         <% } %>
