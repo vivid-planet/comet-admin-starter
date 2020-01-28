@@ -1,20 +1,15 @@
 import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
+import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
-import createStyledComponentsTransformer from "typescript-plugin-styled-components";
 import * as webpack from "webpack";
-
-const styledComponentsTransformer = createStyledComponentsTransformer();
 
 interface IEnvironment {
     production: boolean;
 }
 
 const config = ({ production }: IEnvironment): webpack.Configuration => {
-    const publicPath = "/build/";
-    const tsLoaderOptions: any = {
-        transpileOnly: true,
-    };
+    const publicPath = "/";
 
     const plugins = [
         new webpack.DefinePlugin({
@@ -23,6 +18,13 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         new ForkTsCheckerWebpackPlugin({
             tslint: true,
         }),
+        new HtmlWebpackPlugin({
+            template: "public/index.ejs",
+            templateParameters: {
+                isProduction: production,
+            },
+            hash: true,
+        }),
     ];
     if (production) {
         plugins.push(
@@ -30,8 +32,6 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                 "process.env.NODE_ENV": JSON.stringify("production"),
             }),
         );
-    } else {
-        tsLoaderOptions.getCustomTransformers = () => ({ before: [styledComponentsTransformer] });
     }
 
     return {
@@ -51,10 +51,38 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
                     },
                 },
                 {
-                    test: /\.tsx?$/,
-                    exclude: /node_modules|vendor/,
-                    loader: "ts-loader",
-                    options: tsLoaderOptions,
+                    test: /\.(js|mjs|jsx|ts|tsx)$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: require.resolve("babel-loader"),
+                    options: {
+                        customize: require.resolve("babel-preset-react-app/webpack-overrides"),
+                        babelrc: false,
+                        configFile: false,
+                        presets: [require.resolve("babel-preset-react-app")],
+                        plugins: [
+                            [
+                                require.resolve("babel-plugin-styled-components"),
+                                {
+                                    displayName: !production,
+                                    fileName: !production,
+                                },
+                            ],
+                        ],
+                        cacheDirectory: true,
+                    },
+                },
+                {
+                    test: /\.(js|mjs)$/,
+                    exclude: /@babel(?:\/|\\{1,2})runtime/,
+                    loader: require.resolve("babel-loader"),
+                    options: {
+                        babelrc: false,
+                        configFile: false,
+                        compact: false,
+                        presets: [[require.resolve("babel-preset-react-app/dependencies"), { helpers: true }]],
+                        cacheDirectory: true,
+                        sourceMaps: false,
+                    },
                 },
                 {
                     test: /\.css?$/,
@@ -63,6 +91,10 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             ],
         },
         plugins,
+        optimization: {
+            sideEffects: true,
+            usedExports: true,
+        },
         resolve: {
             modules: ["node_modules"],
             descriptionFiles: ["package.json"],
@@ -79,9 +111,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             publicPath,
         },
         devServer: {
+            contentBase: __dirname,
             host: "0.0.0.0",
             port: 8080,
-            contentBase: path.join(__dirname, "public"),
             historyApiFallback: true,
             headers: {
                 "Access-Control-Allow-Origin": "*",
