@@ -24,6 +24,7 @@
         "graphql": "^14.4.0",
         "graphql-anywhere": "^4.2.1",
         "graphql-tag": "^2.10.1",
+        "material-design-icons": "^3.0.1",
         "history": "^4.9.0",
         "react": "^16.9.0",
         "@apollo/react-common": "^3.0.0",
@@ -35,7 +36,7 @@
         "react-router-dom": "^5.0.1",
         "react-select": "^3.0.4",
         "styled-components": "^4.3.2",
-        "webfontloader": "^1.6.28"
+        "typeface-open-sans": "^0.0.75"
     },
     "devDependencies": {
         "@types/graphql": "^14.2.0",
