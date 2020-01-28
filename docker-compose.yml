@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+    githook:
+        image: "eu.gcr.io/vivid-planet-public/dev/githook-lint-installer:master"
+        volumes:
+            - .:/tmp
+
+    admin:
+        image: eu.gcr.io/vivid-planet-public/dev/node-10-dev:master
+        user: "${RUN_AS_UID}:0"
+        volumes:
+            - ./admin:/opt/app-root/src:rw
+        ports:
+            - 8080:8080
+        environment:
+            - NODE_ENV=development
+            - NPM_TOKEN=${NPM_TOKEN}
