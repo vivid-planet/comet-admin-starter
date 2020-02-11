@@ -1,11 +1,4 @@
-language: node_js
-node_js:
-    - "8"
-cache: npm
-before_install:
-    - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-before_script:
-    - npm install
+sudo: false
+language: minimal
 script:
-    - git reset --soft origin/${TRAVIS_BRANCH}
-    - npx lint-staged
+    - INSTALL_DEPS=1 RUN_AS_UID=`id -u` ./lint.sh

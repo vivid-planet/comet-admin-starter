@@ -1,22 +1,25 @@
 include:
     - project: "vivid/gitlab-ci"
-      file: "templates/lint-npm-base-template.yml"
-    - project: "vivid/gitlab-ci"
       file: "templates/s2i-template.yml"
+
 stages:
-    - lint-build-push
+    - lint
+    - build
 
-lint-npm-master:
-    extends: .lint-npm-master
-    stage: lint-build-push
+lint:
+    stage: lint
+    script:
+        - INSTALL_DEPS=1 RUN_AS_UID=`id -u` ./lint.sh
+    tags:
+        - ec2
+    only:
+        - master
+        - merge_requests
 
-lint-npm-merge_request:
-    extends: .lint-npm-merge_request
-    stage: lint-build-push
-
-build-and-push:
+admin-build-and-push:
     extends: .s2i-build-and-push
-    stage: lint-build-push
+    stage: build
     variables:
+        BUILD_CONTEXT: "admin"
         BASE_IMAGE: # TODO: INSERT BASE IMAGE NAME HERE
         IMAGE_NAME: # TODO: INSERT TARGET IMAGE NAME HERE

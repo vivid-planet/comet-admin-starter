@@ -1,4 +1,3 @@
 build:
     scripts:
-        - npm install
-        - npm run build
+        - echo "Nicht benötigt, weil das die CI übernimmt"
