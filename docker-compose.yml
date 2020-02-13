@@ -6,12 +6,21 @@ services:
             - .:/tmp
 
     admin:
-        image: eu.gcr.io/vivid-planet-public/dev/node-10-dev:master
+        #image: eu.gcr.io/vivid-planet-public/dev/node-10-dev:master
+        build:
+            context: ./admin-docker
         user: "${RUN_AS_UID}:0"
         volumes:
             - ./admin:/opt/app-root/src:rw
+            - admin-node_modules:/opt/app-root/src/node_modules
+            - ./admin/node_modules:/opt/app-root/host-node_modules
         ports:
             - 8080:8080
         environment:
             - NODE_ENV=development
             - NPM_TOKEN=${NPM_TOKEN}
+        command: bash -c "echo 'running npm install...' && npm install && echo 'copying node_modules...' && time rsync -a node_modules/ /opt/app-root/host-node_modules/  && npm run start"
+
+volumes:
+    admin-node_modules:
+        driver: local
