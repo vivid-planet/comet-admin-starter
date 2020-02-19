@@ -16,10 +16,10 @@ lint:
         - master
         - merge_requests
 
-admin-build-and-push:
-    extends: .s2i-build-and-push
-    stage: build
-    variables:
-        BUILD_CONTEXT: "admin"
-        BASE_IMAGE: # TODO: INSERT BASE IMAGE NAME HERE
-        IMAGE_NAME: # TODO: INSERT TARGET IMAGE NAME HERE
+#admin-build-and-push:
+#    extends: .s2i-build-and-push
+#    stage: build
+#    variables:
+#        BUILD_CONTEXT: "admin"
+#        BASE_IMAGE: # TODO: INSERT BASE IMAGE NAME HERE
+#        IMAGE_NAME: # TODO: INSERT TARGET IMAGE NAME HERE
