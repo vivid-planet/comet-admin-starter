@@ -79,8 +79,9 @@
     "scripts": {
         "start": "cross-env BABEL_ENV=development webpack-dev-server --config ./webpack.config.ts --env.production=0",
         "build": "cross-env BABEL_ENV=production webpack --config ./webpack.config.ts --env.production=1 --progress",
-        "tsc": "tsc --project ./tsconfig.json && :",
-        "types": "tsc",
-        "lint": "tslint --project ."
+        "lint": "npm run lint:prettylint && npm run lint:tslint && npm run lint:tsc",
+        "lint:prettylint": "prettylint \"src/**/*.ts\"",
+        "lint:tslint": "tslint --project .",
+        "lint:tsc": "tsc --project ."
     }
 }
