@@ -1,7 +1,8 @@
-import { defaultConfig, IConfig } from "app/config/index";
+import { IConfig } from "app/config/index";
+import { default as devConfig } from "app/config/dev";
 
 const config: IConfig = {
-    ...defaultConfig,
+    ...devConfig,
     // locally override default-values for development here
 };
 
