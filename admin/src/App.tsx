@@ -6,7 +6,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
-import { getConfig } from "app/config";
+import config from "app/config";
 import "app/globals";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
@@ -23,10 +23,10 @@ import MasterMenu from "./components/MasterMenu";
 const cache = new InMemoryCache();
 const link = ApolloLink.from([
     new HttpLink({
-        uri: `${getConfig("apiUrl")}/api/graphql`,
+        uri: `${config.API_URL}/api/graphql`,
         // credentials: "include",
         headers: {
-            "x-vivid-auth": `Basic ${btoa(`${getConfig("apiUser")}:${getConfig("apiPassword")}`)}`,
+            "x-vivid-auth": `Basic ${btoa(`${config.API_USER}:${config.API_PASSWORD}`)}`,
         },
     }),
 ]);

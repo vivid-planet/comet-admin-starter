@@ -4,6 +4,8 @@ import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
 import * as webpack from "webpack";
 
+import environment from "./src/environment";
+
 interface IEnvironment {
     production: boolean;
 }
@@ -21,7 +23,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         new HtmlWebpackPlugin({
             template: "public/index.ejs",
             templateParameters: {
-                isProduction: production,
+                environmentValues: environment.map(env => ({ key: env, value: production ? `$${env}` : process.env[env] })),
             },
             hash: true,
         }),

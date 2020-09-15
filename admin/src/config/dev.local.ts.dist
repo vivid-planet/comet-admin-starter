@@ -1,9 +1,0 @@
-import { IConfig } from "app/config/index";
-import { default as devConfig } from "app/config/dev";
-
-const config: IConfig = {
-    ...devConfig,
-    // locally override default-values for development here
-};
-
-export default config;
