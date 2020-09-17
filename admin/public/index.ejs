@@ -4,15 +4,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>React Admin Starter</title>
-        <% if (isProduction) { %>
         <script type="text/javascript">
             (function() {
-                window.EXTERNAL__APP_CLIENT_API_URL__ = "$API_URL";
-                window.EXTERNAL__APP_CLIENT_API_USER__ = "$API_USER";
-                window.EXTERNAL__APP_CLIENT_API_PASSWORD__ = "$API_PASSWORD";
+<%= environmentValues.map((env) => `window.EXTERNAL__${env.key}__ = "${env.value}";`).join("\n") %>
             })();
         </script>
-        <% } %>
     </head>
     <body>
         <div id="page">
