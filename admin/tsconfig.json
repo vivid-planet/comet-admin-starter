@@ -11,7 +11,8 @@
         "paths": {
             "app/*": ["src/*"]
         },
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "resolveJsonModule": true
     },
     "compileOnSave": false
 }

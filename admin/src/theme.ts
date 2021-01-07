@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createMuiTheme } from "@vivid-planet/comet-admin";
 
 /* tslint:disable:interface-name */
 declare module "@material-ui/core/styles/createMuiTheme" {

@@ -2,24 +2,26 @@ import "app/globals";
 import "material-design-icons/iconfont/material-icons.css";
 import "typeface-open-sans";
 
-import { ApolloProvider } from "@apollo/react-common";
-import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
-import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
-import { createGlobalStyle, MasterLayout, MuiThemeProvider } from "@vivid-planet/react-admin-mui";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import ApolloClient from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { HttpLink } from "apollo-link-http";
+import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
+import { MasterLayout, MuiThemeProvider, RouterBrowserRouter } from "@vivid-planet/comet-admin";
 import config from "app/config";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
-import { de as dateFnsLocaleDe } from "date-fns/locale";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { IntlProvider } from "react-intl";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 
+import comet_admin_messages_de from "../lang/comet-admin/de.json";
+import comet_admin_messages_en from "../lang/comet-admin/en.json";
 import MasterHeader from "./components/MasterHeader";
 import MasterMenu from "./components/MasterMenu";
+
+const cometAdminMessages = {
+    en: comet_admin_messages_de,
+    de: comet_admin_messages_en,
+};
 
 const cache = new InMemoryCache();
 const link = ApolloLink.from([
@@ -51,9 +53,9 @@ class App extends React.Component {
     public render() {
         return (
             <MuiThemeProvider theme={theme}>
-                <RouterBrowserRouter>
-                    <ApolloProvider client={client}>
-                        <LocaleContext.Provider value={dateFnsLocaleDe}>
+                <IntlProvider locale="de" messages={cometAdminMessages["de"]}>
+                    <RouterBrowserRouter>
+                        <ApolloProvider client={client}>
                             <React.Fragment>
                                 <GlobalStyle />
                                 <MasterLayout headerComponent={MasterHeader} menuComponent={MasterMenu}>
@@ -63,9 +65,9 @@ class App extends React.Component {
                                     </Switch>
                                 </MasterLayout>
                             </React.Fragment>
-                        </LocaleContext.Provider>
-                    </ApolloProvider>
-                </RouterBrowserRouter>
+                        </ApolloProvider>
+                    </RouterBrowserRouter>
+                </IntlProvider>
             </MuiThemeProvider>
         );
     }
