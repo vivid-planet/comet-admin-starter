@@ -1,3 +1,7 @@
+import "app/globals";
+import "material-design-icons/iconfont/material-icons.css";
+import "typeface-open-sans";
+
 import { ApolloProvider } from "@apollo/react-common";
 import { RouterBrowserRouter } from "@vivid-planet/react-admin-core";
 import { LocaleContext } from "@vivid-planet/react-admin-date-fns";
@@ -7,16 +11,13 @@ import ApolloClient from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import config from "app/config";
-import "app/globals";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";
 import { de as dateFnsLocaleDe } from "date-fns/locale";
-// tslint:disable-next-line: no-submodule-imports
-import "material-design-icons/iconfont/material-icons.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Redirect, Route, Switch } from "react-router-dom";
-import "typeface-open-sans";
+
 import MasterHeader from "./components/MasterHeader";
 import MasterMenu from "./components/MasterMenu";
 
