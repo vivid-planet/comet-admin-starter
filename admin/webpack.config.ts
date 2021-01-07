@@ -1,6 +1,6 @@
-import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import * as fs from "fs";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import * as path from "path";
 import * as webpack from "webpack";
 
@@ -18,7 +18,9 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
         }),
         new ForkTsCheckerWebpackPlugin({
-            tslint: true,
+            eslint: {
+                files: "./src/**/*.{ts,tsx,js,jsx,json,css,scss,md}",
+            },
         }),
         new HtmlWebpackPlugin({
             template: "public/index.ejs",
