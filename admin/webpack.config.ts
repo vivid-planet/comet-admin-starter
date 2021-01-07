@@ -17,11 +17,6 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         new webpack.DefinePlugin({
             CONFIG_DEV_LOCAL_EXISTS: fs.existsSync(path.resolve(__dirname, "src/config/dev.local.ts")),
         }),
-        new ForkTsCheckerWebpackPlugin({
-            eslint: {
-                files: "./src/**/*.{ts,tsx,js,jsx,json,css,scss,md}",
-            },
-        }),
         new HtmlWebpackPlugin({
             template: "public/index.ejs",
             templateParameters: {
@@ -34,6 +29,14 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
         plugins.push(
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": JSON.stringify("production"),
+            }),
+        );
+    } else {
+        plugins.push(
+            new ForkTsCheckerWebpackPlugin({
+                eslint: {
+                    files: "./src/**/*.{ts,tsx,js,jsx,json,css,scss,md}",
+                },
             }),
         );
     }
