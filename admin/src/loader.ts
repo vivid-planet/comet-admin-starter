@@ -1,7 +1,7 @@
 import App from "./App";
 
 const loadHtml = () => {
-    const baseEl = document.querySelector<HTMLElement>("react-admin-starter");
+    const baseEl = document.querySelector<HTMLElement>("comet-admin-starter");
     if (!baseEl) return false;
 
     App.render(baseEl);

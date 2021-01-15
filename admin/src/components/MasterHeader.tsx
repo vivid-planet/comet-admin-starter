@@ -4,7 +4,7 @@ import * as React from "react";
 export default function MasterHeader() {
     return (
         <Typography variant="h5" color="primary">
-            React Admin Starter
+            Comet Admin Starter
         </Typography>
     );
 }

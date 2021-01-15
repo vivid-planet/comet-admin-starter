@@ -3,7 +3,7 @@ import "material-design-icons/iconfont/material-icons.css";
 import "typeface-open-sans";
 
 import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
-import { MasterLayout, MuiThemeProvider, RouterBrowserRouter } from "@vivid-planet/comet-admin";
+import { MasterLayout, MuiThemeProvider, RouterBrowserRouter } from "@comet/admin";
 import config from "app/config";
 import Dashboard from "app/pages/Dashboard";
 import theme from "app/theme";

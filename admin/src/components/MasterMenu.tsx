@@ -1,5 +1,5 @@
+import { Menu, MenuItemRouterLink } from "@comet/admin";
 import { Dashboard } from "@material-ui/icons";
-import { Menu, MenuItemRouterLink } from "@vivid-planet/comet-admin";
 import * as React from "react";
 
 export default function MasterMenu() {

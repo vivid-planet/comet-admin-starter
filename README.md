@@ -1,1 +1,1 @@
-# react-admin-starter
+# comet-admin-starter
