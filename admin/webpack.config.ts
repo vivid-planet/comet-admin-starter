@@ -44,7 +44,7 @@ const config = ({ production }: IEnvironment): webpack.Configuration => {
     return {
         mode: production ? "production" : "development",
         entry: {
-            "react-admin-starter": ["./src/polyfills.ts", "./src/pre-loader.ts", "./src/loader.ts"],
+            "comet-admin-starter": ["./src/polyfills.ts", "./src/pre-loader.ts", "./src/loader.ts"],
         },
         module: {
             rules: [

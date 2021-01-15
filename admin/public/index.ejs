@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>React Admin Starter</title>
+        <title>Comet Admin Starter</title>
         <script type="text/javascript">
             (function() {
 <%= environmentValues.map((env) => `window.EXTERNAL__${env.key}__ = "${env.value}";`).join("\n") %>
@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="page">
-            <react-admin-starter />
+            <comet-admin-starter />
         </div>
     </body>
 </html>
